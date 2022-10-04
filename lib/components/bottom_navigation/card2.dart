@@ -29,7 +29,7 @@ class Card2 extends StatelessWidget {
         ),
         child: Column(
           children: [
-            AuthorCard(authorName: recipe.authorName, title: recipe.role.toString() , imageProvider: AssetImage(recipe.profileImage.toString())),
+            AuthorCard(authorName: recipe.authorName.toString(), title: recipe.role.toString() , imageProvider: AssetImage(recipe.profileImage.toString())),
             Expanded(child: Stack(
               children: [
                 Positioned(

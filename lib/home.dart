@@ -1,9 +1,7 @@
-
+import 'package:aplikasi_3/models/explore_recipe.dart';
 import 'package:flutter/material.dart';
 
-import 'components/bottom_navigation/card1.dart';
-import 'components/bottom_navigation/card2.dart';
-import 'components/bottom_navigation/card3.dart';
+import 'components/components.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -14,12 +12,41 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
 
-
-
   static List<Widget> pages = <Widget>[
-    const Card1(),
-    const Card2(),
-    const Card3()
+    Card1(
+        recipe: ExploreRecipe(
+            authorName: 'Ray Wenderlich',
+            title: 'The Art of Dough',
+            subtitle: 'Editor\'s Choice',
+            message: 'Learn to make the perfect bread.',
+            backgroundImage: 'assets/magazine_pics/card_bread.jpg',
+            calories: 10)),
+    Card2(
+        recipe: ExploreRecipe(
+            authorName: 'Mike Katz',
+            role: 'Smoothie Connoisseur',
+            profileImage: 'assets/profile_pics/person_katz.jpeg',
+            title: 'Recipe',
+            subtitle: 'Smoothies',
+            backgroundImage: 'assets/magazine_pics/mag2.png',
+            calories: 10)),
+    Card3(
+        recipe: ExploreRecipe(
+            title: 'Vegan Trends',
+            tags: [
+              'Healthy',
+              'Vegan',
+              'Carrots',
+              'Greens',
+              'Wheat',
+              'Pescetarian',
+              'Mint',
+              'Lemongrass',
+              'Salad',
+              'Water'
+            ],
+            backgroundImage: 'assets/magazine_pics/mag3.png',
+            calories: 10)),
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -40,16 +67,16 @@ class _HomeState extends State<Home> {
         selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.breakfast_dining),
-            label: 'Roti',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Favorites',
+            icon: Icon(Icons.explore),
+            label: 'Explore',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book),
-            label: 'Recipe',
+            label: 'Recipes',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'To Buy',
           ),
         ],
       ),
