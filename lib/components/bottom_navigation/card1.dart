@@ -1,13 +1,13 @@
+import 'package:aplikasi_3/models/explore_recipe.dart';
 import 'package:flutter/material.dart';
 import 'package:aplikasi_3/fooderlich_theme.dart';
 
 class Card1 extends StatelessWidget {
-  const Card1({Key? key}) : super(key: key);
-  final String category = 'Editor\'s Choice';
-  final String title = 'The Art of Dough';
-  final String description =
-      'Learn to make the perfect bread.';
-  final String chef = 'Ray Wenderlich';
+
+  final ExploreRecipe recipe;
+
+  const Card1({Key? key, required this.recipe}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -15,19 +15,19 @@ class Card1 extends StatelessWidget {
         child: Container(
             child: Stack(children: [
               Text(
-                category,
+                recipe.subtitle.toString(),
                 style: FooderlichTheme.darkTextTheme.bodyText1,
               ),
               Positioned(
                 child: Text(
-                  title,
+                  recipe.title.toString(),
                   style: FooderlichTheme.darkTextTheme.headline2,
                 ),
                 top: 20,
               ),
               Positioned(
                 child: Text(
-                  description,
+                  recipe.message.toString(),
                   style: FooderlichTheme.darkTextTheme.bodyText1,
                 ),
                 bottom: 30,
@@ -35,7 +35,7 @@ class Card1 extends StatelessWidget {
               ),
               Positioned(
                 child: Text(
-                  chef,
+                  recipe.authorName.toString(),
                   style: FooderlichTheme.darkTextTheme.bodyText1,
                 ),
                 bottom: 10,
@@ -45,8 +45,8 @@ class Card1 extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             constraints: const BoxConstraints.expand(width: 350, height: 450),
             decoration: BoxDecoration(
-                image: const DecorationImage(
-                    image: AssetImage('assets/mag1.png'), fit: BoxFit.cover),
+                image:  DecorationImage(
+                    image: AssetImage(recipe.backgroundImage.toString()), fit: BoxFit.cover),
                 borderRadius: const BorderRadius.all(Radius.circular(10.0)),
                 boxShadow: [
                   BoxShadow(

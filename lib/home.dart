@@ -1,8 +1,9 @@
-import 'package:aplikasi_3/bottom_navigation/card1.dart';
-import 'package:aplikasi_3/bottom_navigation/card2.dart';
-import 'package:aplikasi_3/bottom_navigation/card3.dart';
-import 'package:aplikasi_3/inheritanced_widget.dart';
+
 import 'package:flutter/material.dart';
+
+import 'components/bottom_navigation/card1.dart';
+import 'components/bottom_navigation/card2.dart';
+import 'components/bottom_navigation/card3.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
