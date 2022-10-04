@@ -28,6 +28,6 @@ class FriendPostListView extends StatelessWidget {
         const SizedBox(height: 16),
       ],
     ),);
-    );
+
   }
 }
