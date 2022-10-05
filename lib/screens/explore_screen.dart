@@ -19,7 +19,7 @@ class ExploreScreen extends StatelessWidget {
               children: [
                 TodayRecipeListView(recipes: exploreData!.todayRecipes!),
                 const SizedBox(height: 16),
-                Text(exploreData.friendPosts!.toString()),
+                FriendPostListView(friendPosts: exploreData.friendPosts!),
               ],
             );
           } else {

@@ -1,5 +1,6 @@
 import 'package:aplikasi_3/models/explore_recipe.dart';
 import 'package:aplikasi_3/screens/explore_screen.dart';
+import 'package:aplikasi_3/screens/recipes_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'components/components.dart';
@@ -15,15 +16,7 @@ class _HomeState extends State<Home> {
 
   static List<Widget> pages = <Widget>[
     ExploreScreen(),
-    Card2(
-        recipe: ExploreRecipe(
-            authorName: 'Mike Katz',
-            role: 'Smoothie Connoisseur',
-            profileImage: 'assets/profile_pics/person_katz.jpeg',
-            title: 'Recipe',
-            subtitle: 'Smoothies',
-            backgroundImage: 'assets/magazine_pics/mag2.png',
-            calories: 10)),
+    RecipesScreen(),
     Card3(
         recipe: ExploreRecipe(
             title: 'Vegan Trends',
