@@ -3,15 +3,19 @@ import 'package:flutter/services.dart';
 import 'package:aplikasi_3/models/models.dart';
 
 class MockFooderlichService{
+
   Future<ExploreData> getExploreData() async {
     final todayRecipes = await _getTodayRecipes();
-    final friendPosts = await _getFriendPosts();
+    final friendPosts = await _getFriendFeed();
     return ExploreData(todayRecipes, friendPosts);
   }
+
    Future<List<ExploreRecipe>> _getTodayRecipes() async {
     await Future.delayed(const Duration(seconds: 1));
-    final dataString = await _loadAsset('assets/sample_data/sample_explore_recipes.json');
+    final dataString =
+            await _loadAsset('assets/sample_data/sample_explore_recipes.json');
     final Map<String, dynamic> json = jsonDecode(dataString);
+
     if (json['recipes'] != null) {
       final recipes = <ExploreRecipe>[];
       json['recipes'].forEach((recipe) {
@@ -22,9 +26,9 @@ class MockFooderlichService{
       return [];
     }
   }
-  Future<List<Post>> _getFriendPosts() async {
+  Future<List<Post>> _getFriendFeed() async {
     await Future.delayed(const Duration(seconds: 1));
-    final dataString = await _loadAsset('assets/sample_data/sample_friend_posts.json');
+    final dataString = await _loadAsset('assets/sample_data/sample_friends_feed.json');
     final Map<String, dynamic> json = jsonDecode(dataString);
     if (json['feed'] != null) {
       final posts = <Post>[];

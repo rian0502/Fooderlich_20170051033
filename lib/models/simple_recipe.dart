@@ -1,18 +1,19 @@
 
 class SimpleRecipe{
-  String dishImage;
-  String title;
-  String duration;
-  List<String> information;
-  
-  SimpleRecipe({required this.dishImage, required this.title, required this.duration, required this.information});
+  String? dishImage;
+  String? title;
+  String? duration;
+  String? source;
+  List<String>? information;
 
-  factory SimpleRecipe.fromJson(Map<String, dynamic> json){
-    return SimpleRecipe(
-      dishImage: json['dishImage'],
-      title: json['title'],
-      duration: json['duration'],
-      information: json['information'].cast<String>()
-    );
+  SimpleRecipe(
+  this.dishImage, this.title, this.duration, this.source, this.information);
+
+  SimpleRecipe.fromJson(Map<String, dynamic> json) {
+    dishImage = json['dishImage'];
+    title = json['title'];
+    duration = json['duration'];
+    source = json['source'];
+    information = json['information'].cast<String>();
   }
 }

@@ -1,4 +1,5 @@
 import 'package:aplikasi_3/models/explore_recipe.dart';
+import 'package:aplikasi_3/screens/explore_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'components/components.dart';
@@ -13,14 +14,7 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
 
   static List<Widget> pages = <Widget>[
-    Card1(
-        recipe: ExploreRecipe(
-            authorName: 'Ray Wenderlich',
-            title: 'The Art of Dough',
-            subtitle: 'Editor\'s Choice',
-            message: 'Learn to make the perfect bread.',
-            backgroundImage: 'assets/magazine_pics/card_bread.jpg',
-            calories: 10)),
+    ExploreScreen(),
     Card2(
         recipe: ExploreRecipe(
             authorName: 'Mike Katz',

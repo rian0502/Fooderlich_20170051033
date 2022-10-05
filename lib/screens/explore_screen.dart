@@ -1,4 +1,5 @@
 import 'package:aplikasi_3/api/mock_fooderlich_service.dart';
+import 'package:aplikasi_3/models/explore_data.dart';
 import 'package:flutter/material.dart';
 import 'package:aplikasi_3/components/components.dart';
 
@@ -9,16 +10,21 @@ class ExploreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.done) {
-        return ListView(scrollDirection: Axis.vertical, children: [
-          TodayRecipeListView(recipes: snapshot.data.todayRecipes),
-          const SizedBox(height: 16),
-          FriendPostListView(posts: snapshot.data?.friendPosts),
-        ],);
-      } else {
-        return const Center(child: CircularProgressIndicator());
-      }
-    });
+    return FutureBuilder(
+        future: mockServic.getExploreData(),
+        builder: (context, AsyncSnapshot<ExploreData> snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            final exploreData = snapshot.data;
+            return ListView(
+              children: [
+                TodayRecipeListView(recipes: exploreData!.todayRecipes!),
+                const SizedBox(height: 16),
+                Text(exploreData.friendPosts!.toString()),
+              ],
+            );
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        });
   }
 }

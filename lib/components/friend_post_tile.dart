@@ -14,7 +14,7 @@ class FriendPostTile extends StatelessWidget {
       children: [
         CircleImage(
           imageRadius: 20,
-          imageProvider: AssetImage(post.profileImageUri.toString()),
+          imageProvider: AssetImage(post.profileImageUrl.toString()),
         ),
         const SizedBox(
           width: 16,

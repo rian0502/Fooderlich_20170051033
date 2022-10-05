@@ -1,17 +1,18 @@
-class Post{
-  String profileImageUri;
-  String comment;
-  String foodImageUri;
-  String timestamp;
+class Post {
+  String? profileImageUrl;
+  String? comment;
+  String? foodPictureUrl;
+  String? timestamp;
+  Post(
+      {this.profileImageUrl,
+      this.comment,
+      this.foodPictureUrl,
+      this.timestamp});
 
-  Post({required this.profileImageUri,required this.comment,required this.foodImageUri,required this.timestamp});
-
-  factory Post.fromJson(Map<String, dynamic> json){
-    return Post(
-      profileImageUri: json['profileImageUri'],
-      comment: json['comment'],
-      foodImageUri: json['foodImageUri'],
-      timestamp: json['timestamp']
-    );
+  Post.fromJson(Map<String, dynamic> json) {
+    profileImageUrl = json['profileImageUrl'];
+    comment = json['comment'];
+    foodPictureUrl = json['foodPictureUrl'];
+    timestamp = json['timestamp'];
   }
 }
