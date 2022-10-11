@@ -9,7 +9,7 @@ class GroceryItem {
   final Color? color;
   final int? quantity;
   final DateTime? date;
-  final bool? isComplete;
+  final bool isComplete;
 
   GroceryItem({
     this.id,
@@ -18,7 +18,7 @@ class GroceryItem {
     this.color,
     this.quantity,
     this.date,
-    this.isComplete,
+    required this.isComplete,
   });
 
   GroceryItem copyWith({
