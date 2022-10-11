@@ -1,9 +1,7 @@
-import 'package:aplikasi_3/models/explore_recipe.dart';
+import 'package:aplikasi_3/screens/empty_grocery_screen.dart';
 import 'package:aplikasi_3/screens/explore_screen.dart';
 import 'package:aplikasi_3/screens/recipes_screen.dart';
 import 'package:flutter/material.dart';
-
-import 'components/components.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -17,23 +15,7 @@ class _HomeState extends State<Home> {
   static List<Widget> pages = <Widget>[
     ExploreScreen(),
     RecipesScreen(),
-    Card3(
-        recipe: ExploreRecipe(
-            title: 'Vegan Trends',
-            tags: [
-              'Healthy',
-              'Vegan',
-              'Carrots',
-              'Greens',
-              'Wheat',
-              'Pescetarian',
-              'Mint',
-              'Lemongrass',
-              'Salad',
-              'Water'
-            ],
-            backgroundImage: 'assets/magazine_pics/mag3.png',
-            calories: 10)),
+    const EmptyGroceryScreen()
   ];
   void _onItemTapped(int index) {
     setState(() {
