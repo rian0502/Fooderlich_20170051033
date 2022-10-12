@@ -1,6 +1,6 @@
 import 'package:aplikasi_3/models/tab_manager.dart';
-import 'package:aplikasi_3/screens/empty_grocery_screen.dart';
 import 'package:aplikasi_3/screens/explore_screen.dart';
+import 'package:aplikasi_3/screens/grocery_screen.dart';
 import 'package:aplikasi_3/screens/recipes_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
   static List<Widget> pages = <Widget>[
     ExploreScreen(),
     RecipesScreen(),
-    const EmptyGroceryScreen()
+    const GroceryScreen()
   ];
 
 

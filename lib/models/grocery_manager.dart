@@ -6,7 +6,7 @@ class GroceryManager extends ChangeNotifier {
 
   List <GroceryItem> get groceryItems => List.unmodifiable(_groceryItems);
 
-  void add(GroceryItem item) {
+  void addItem(GroceryItem item) {
     _groceryItems.add(item);
     notifyListeners();
   }

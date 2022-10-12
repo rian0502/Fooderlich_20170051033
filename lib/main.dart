@@ -3,9 +3,8 @@ import 'package:aplikasi_3/home.dart';
 import 'package:aplikasi_3/inheritanced_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'models/grocery_manager.dart';
 import 'models/models.dart';
-import 'models/tab_manager.dart';
+
 
 
 void main() {
@@ -17,7 +16,7 @@ class Fooderlich extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = FooderlichTheme.dark();
+    final theme = FooderlichTheme.light();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Fooderlich',
