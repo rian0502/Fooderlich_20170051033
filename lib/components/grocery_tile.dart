@@ -23,7 +23,11 @@ class GroceryTile extends StatelessWidget {
         children: [
           Row(
             children: [
+              // 2
+              Container(width: 5.0, color: item!.color!),
+              // 3
               const SizedBox(width: 16.0),
+              // 4
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,9 +93,7 @@ class GroceryTile extends StatelessWidget {
 
   Widget buildCheckbox() {
     return Checkbox(
-
       value: item!.isComplete!,
-
       onChanged: onComplete,
     );
   }
