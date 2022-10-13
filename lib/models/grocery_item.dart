@@ -28,13 +28,13 @@ class GroceryItem {
     Color? color,
     int? quantity,
     DateTime? date,
-    bool? isComplete = false,
+    bool? isComplete,
   }) {
     return GroceryItem(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      importance: importance ?? this.importance,
-      color: color ?? this.color,
+      id: id ?? this.id!,
+      name: name ?? this.name!,
+      importance: importance ?? this.importance!,
+      color: color ?? this.color!,
       quantity: quantity ?? this.quantity!,
       date: date ?? this.date!,
       isComplete: isComplete ?? this.isComplete!,
