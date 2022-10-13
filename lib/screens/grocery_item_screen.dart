@@ -34,19 +34,16 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
 
   @override
   void initState() {
-    // 1
     if (widget.originalItem != null) {
-      _nameController.text = widget!.originalItem!.name!;
-      _name = widget!.originalItem!.name!;
-      _currentSliderValue = widget!.originalItem!.quantity!;
-      _importance = widget!.originalItem!.importance!;
-      _currentColor = widget!.originalItem!.color!;
-      final date = widget!.originalItem!.date!;
+      _nameController.text = widget.originalItem!.name!;
+      _name = widget.originalItem!.name!;
+      _currentSliderValue = widget.originalItem!.quantity!;
+      _importance = widget.originalItem!.importance!;
+      _currentColor = widget.originalItem!.color!;
+      final date = widget.originalItem!.date!;
       _timeOfDay = TimeOfDay(hour: date.hour, minute: date.minute);
       _dueDate = date;
     }
-
-    // 2
     _nameController.addListener(() {
       setState(() {
         _name = _nameController.text;
@@ -65,7 +62,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // 2
+
       appBar: AppBar(
         actions: [
           IconButton(
