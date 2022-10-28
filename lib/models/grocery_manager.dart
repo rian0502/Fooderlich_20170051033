@@ -19,9 +19,15 @@ class GroceryManager extends ChangeNotifier {
     _groceryItems[index] = item;
     notifyListeners();
   }
+
   void completeItem(int index, bool change){
     final item = _groceryItems[index];
     _groceryItems[index] = item.copyWith(isComplete: change);
     notifyListeners();
+  }
+  GroceryItem? getGroceryItem(String id){
+    final index = _groceryItems.indexWhere((element) => element.id == id);
+    if (index == -1) return null;
+    return groceryItems[index];
   }
 }
