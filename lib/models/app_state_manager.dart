@@ -18,42 +18,36 @@ class AppStateManager extends ChangeNotifier{
   bool get isInitialized => _initialized;
   bool get isLoggedIn => _loggedIn;
   bool get isOnboardingComplete => _onboardingComplete;
-  int get selectedTab => _selectedTab;
+  int get getSelectedTab  => _selectedTab;
 
-  // TODO: Add initializeApp
-  void  initializeApp() {
-    Timer(const Duration(seconds: 2), () {
-      _initialized = true;
-      notifyListeners();
-    });
+  Future<void>  initializeApp()  async{
+    _loggedIn = await _appCache.isUserLoggedIn();
+    // Check if the user completed onboarding
+    _onboardingComplete = await _appCache.didCompleteOnboarding();
   }
-  // TODO: Add login
-  void login(String username, String password) {
+  void login(String username, String password) async {
     _loggedIn = true;
+    await _appCache.cacheUser();
     notifyListeners();
   }
-  // TODO: Add completeOnboarding
   void completeOnboarding() {
     _onboardingComplete = true;
     notifyListeners();
   }
-  // TODO: Add goToTab
   void goToTab(int index) {
     _selectedTab = index;
     notifyListeners();
   }
-  // TODO: Add goToRecipes
   void goToRecipes() {
     _selectedTab = FooderlichTab.recipes;
     notifyListeners();
   }
-  // TODO: Add logout
-  void logout() {
+  void logout() async {
     _loggedIn = false;
     _onboardingComplete = false;
-    _initialized = false;
     _selectedTab = 0;
-    initializeApp();
+    await _appCache.invalidate();
+    await initializeApp();
     notifyListeners();
   }
   void onboarded() async {

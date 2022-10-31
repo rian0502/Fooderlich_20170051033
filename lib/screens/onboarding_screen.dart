@@ -4,13 +4,21 @@ import 'package:provider/provider.dart';
 import '../models/models.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({Key? key}) : super(key: key);
+  static MaterialPage page() {
+    return MaterialPage(
+      name: FooderlichPages.onboardingPath,
+      key: ValueKey(FooderlichPages.onboardingPath),
+      child: const OnboardingScreen(),
+    );
+  }
 
+  const OnboardingScreen({Key? key}) : super(key: key);
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+
   final controller = PageController();
   final Color rwColor = const Color.fromRGBO(64, 143, 77, 1);
 

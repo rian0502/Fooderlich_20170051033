@@ -5,8 +5,22 @@ import 'package:aplikasi_3/screens/recipes_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'models/fooderlich_pages.dart';
+
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  static MaterialPage page(int currentTab) {
+    return MaterialPage(
+      name: FooderlichPages.home,
+      key: ValueKey(FooderlichPages.home),
+      child: Home(
+        currentTab: currentTab,
+      ),
+    );
+  }
+
+  const Home({Key? key,  this.currentTab}) : super(key: key);
+
+  final int? currentTab;
   @override
   State<Home> createState() => _HomeState();
 }

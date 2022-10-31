@@ -1,6 +1,4 @@
 import 'package:aplikasi_3/fooderlich_theme.dart';
-import 'package:aplikasi_3/home.dart';
-import 'package:aplikasi_3/inheritanced_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'models/models.dart';
@@ -9,35 +7,45 @@ import 'navigation/app_router.dart';
 
 
 void main() async{
-
-  final appStateManager = AppStateManager();
-  //await appStateManager.initializeApp();
-  runApp(Fooderlich(appStateManager: appStateManager));
+  runApp(const Fooderlich());
 }
 
 class Fooderlich extends StatefulWidget {
-  final AppStateManager appStateManager;
-  const Fooderlich({Key? key, required this.appStateManager}) : super(key: key);
+
+  const Fooderlich({Key? key}) : super(key: key);
 
   @override
   State<Fooderlich> createState() => _FooderlichState();
 }
 
 class _FooderlichState extends State<Fooderlich> {
-  late final _groceryManager = GroceryManager();
-  late final _profileManager = ProfileManager();
-  late final _appRouter = AppRouter(
-    appStateManager: widget.appStateManager,
-    groceryManager: _groceryManager,
-    profileManager: _profileManager,
-  );
+  final _groceryManager = GroceryManager();
+  final _profileManager = ProfileManager();
+  final _appStateManager = AppStateManager();
+  late AppRouter _appRouter;
+
+  @override
+  void initState() {
+    _appRouter = AppRouter(
+      appStateManager: _appStateManager,
+      groceryManager: _groceryManager,
+      profileManager: _profileManager,
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) => widget.appStateManager),
-      ChangeNotifierProvider(create: (context) => _groceryManager),
-      ChangeNotifierProvider(create: (context) => _profileManager),
-    ],
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => _groceryManager),
+        ChangeNotifierProvider(
+          create: (context) => _appStateManager,
+        ),
+        ChangeNotifierProvider(
+          create: (context) => _profileManager,
+        )
+      ],
       child: Consumer<ProfileManager>(
         builder: (context, profileManager, child) {
           ThemeData theme;
@@ -46,13 +54,14 @@ class _FooderlichState extends State<Fooderlich> {
           } else {
             theme = FooderlichTheme.light();
           }
-          final router = _appRouter.router;
-          return MaterialApp.router(
-            title: 'Fooderlich',
+
+          return MaterialApp(
             theme: theme,
-            routerDelegate: router.routerDelegate,
-            routeInformationParser: router.routeInformationParser,
-            routeInformationProvider: router.routeInformationProvider,
+            title: 'Fooderlich',
+            home: Router(
+              routerDelegate: _appRouter,
+              backButtonDispatcher: RootBackButtonDispatcher(),
+            ),
           );
         },
       ),

@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:go_router/go_router.dart';
 import '../components/circle_image.dart';
 import '../models/models.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:url_launcher/url_launcher.dart';
-import 'dart:io';
 
 
 class ProfileScreen extends StatefulWidget {
-  final User user;
-  final int currentTab;
+  final User? user;
 
-  const ProfileScreen({Key? key, required this.user, required this.currentTab}) : super(key: key);
+
+  static MaterialPage page(User user) {
+    return MaterialPage(
+      name: FooderlichPages.profilePath,
+      key: ValueKey(FooderlichPages.profilePath),
+      child: ProfileScreen(user: user),
+    );
+  }
+  const ProfileScreen({Key? key, this.user}) : super(key: key);
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -22,7 +25,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: () {
+            Provider.of<ProfileManager>(context, listen: false)
+                .tapOnProfile(false);
+          },
+        ),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -41,20 +52,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
         buildDarkModeRow(),
         ListTile(
           title: const Text('View raywenderlich.com'),
-          onTap: () async {
-            if (kIsWeb || Platform.isMacOS) {
-              await launchUrl(Uri.parse('https://www.raywenderlich.com/'));
-            } else {
-              context.goNamed(
-                'rw',
-                params: {'tab': '${widget.currentTab}'},
-              );
-            }
+          onTap: () {
+            Provider.of<ProfileManager>(context, listen: false)
+                .tapOnRaywenderlich(true);
           },
         ),
         ListTile(
           title: const Text('Log out'),
           onTap: () {
+            // 1
+            Provider.of<ProfileManager>(context, listen: false)
+                .tapOnProfile(false);
+            // 2
             Provider.of<AppStateManager>(context, listen: false).logout();
           },
         )
@@ -65,17 +74,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Column(
       children: [
         CircleImage(
-          imageProvider: AssetImage(widget.user.profileImageUrl),
+          imageProvider: AssetImage(widget.user!.profileImageUrl),
           imageRadius: 80,
         ),
         const SizedBox(height: 16),
         Text(
-          widget.user.name!,
+          widget.user!.name!,
           style: Theme.of(context).textTheme.headline6,
         ),
         const SizedBox(height: 8),
         Text(
-          widget.user.email,
+          widget.user!.email!,
           style: Theme.of(context).textTheme.subtitle1,
         ),
       ],
@@ -90,7 +99,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           const Text('Dark Mode'),
           Switch(
-            value: widget.user.darkMode,
+            value: widget.user!.darkMode,
             onChanged: (value) {
               Provider.of<ProfileManager>(context, listen: false).darkMode =
                   value;

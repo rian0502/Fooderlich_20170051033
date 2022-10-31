@@ -5,18 +5,38 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 import '../components/grocery_tile.dart';
+import '../models/fooderlich_pages.dart';
 
 class GroceryItemScreen extends StatefulWidget {
   final Function(GroceryItem?)? onCreate;
-  final Function(GroceryItem?)? onUpdate;
+  final Function(GroceryItem?, int?)? onUpdate;
   final GroceryItem? originalItem;
+  final int? index;
   final bool? isUpdating;
 
+  static MaterialPage page({
+    GroceryItem? item,
+    int? index,
+    Function(GroceryItem?)? onCreate,
+    Function(GroceryItem?, int?)? onUpdate,
+  }) {
+    return MaterialPage(
+      name: FooderlichPages.groceryItemDetails,
+      key: ValueKey(FooderlichPages.groceryItemDetails),
+      child: GroceryItemScreen(
+        originalItem: item,
+        index: index!,
+        onCreate: onCreate!,
+        onUpdate: onUpdate!,
+      ),
+    );
+  }
   const GroceryItemScreen({
     Key? key,
     this.onCreate,
     this.onUpdate,
     this.originalItem,
+    this.index,
   })  : isUpdating = (originalItem != null),
         super(key: key);
   @override
@@ -82,7 +102,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
                     _timeOfDay.minute,
                   ));
               if (widget.isUpdating!) {
-                widget.onUpdate!(groceryItem);
+                widget.onUpdate!(groceryItem, widget.index);
               } else {
                 widget.onCreate!(groceryItem);
               }
