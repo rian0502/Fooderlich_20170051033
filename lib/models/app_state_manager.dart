@@ -22,7 +22,6 @@ class AppStateManager extends ChangeNotifier{
 
   Future<void>  initializeApp()  async{
     _loggedIn = await _appCache.isUserLoggedIn();
-    // Check if the user completed onboarding
     _onboardingComplete = await _appCache.didCompleteOnboarding();
   }
   void login(String username, String password) async {

@@ -56,14 +56,13 @@ class AppRouter extends RouterDelegate
           GroceryItemScreen.page(onCreate: (item) {
             groceryManager!.addItem(item!);
           }),
-        // 1
-        if (groceryManager!.selectedIndex != null)
-        // 2
+
+        if (groceryManager!.selectedIndex != 0)
+
           GroceryItemScreen.page(
             item: groceryManager!.selectedGroceryItem,
             index: groceryManager!.selectedIndex,
             onUpdate: (item, index) {
-              // 3
               groceryManager!.updateItem(item!, index!);
             },
           ),
@@ -75,13 +74,9 @@ class AppRouter extends RouterDelegate
   }
 
   bool _handlePopPage(
-      // 1
       Route<dynamic> route,
-      // 2
       result) {
-    // 3
     if (!route.didPop(result)) {
-      // 4
       return false;
     }
 
