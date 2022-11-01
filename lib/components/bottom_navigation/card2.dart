@@ -1,5 +1,6 @@
 import 'package:aplikasi_3/fooderlich_theme.dart';
 import 'package:aplikasi_3/components/author_card.dart';
+import 'package:aplikasi_3/inheritanced_widget.dart';
 import 'package:aplikasi_3/models/explore_recipe.dart';
 import 'package:flutter/material.dart';
 
@@ -29,22 +30,22 @@ class Card2 extends StatelessWidget {
         ),
         child: Column(
           children: [
-            AuthorCard(authorName: recipe.authorName.toString(), title: recipe.role.toString() , imageProvider: AssetImage(recipe.profileImage.toString())),
+            MyInheritancedWidget(child: AuthorCard(authorName: recipe.authorName.toString(), title: recipe.role.toString() , imageProvider: AssetImage(recipe.profileImage.toString())), isFavorit: false),
             Expanded(child: Stack(
               children: [
                 Positioned(
-                  child: Text(recipe.title.toString(), style: FooderlichTheme.lightTextTheme.headline1),
                   bottom: 16,
                   right: 16,
+                  child: Text(recipe.title.toString(), style: FooderlichTheme.lightTextTheme.headline1),
                 ),
 
                 Positioned(
+                  bottom: 70,
+                  left:16 ,
                   child: RotatedBox(
                     quarterTurns: 3,
                     child: Text(recipe.subtitle.toString(), style: FooderlichTheme.lightTextTheme.headline1),
                   ),
-                  bottom: 70,
-                  left:16 ,
                 ),
 
               ],

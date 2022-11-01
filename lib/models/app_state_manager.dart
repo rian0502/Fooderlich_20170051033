@@ -21,8 +21,15 @@ class AppStateManager extends ChangeNotifier{
   int get getSelectedTab  => _selectedTab;
 
   Future<void>  initializeApp()  async{
-    _loggedIn = await _appCache.isUserLoggedIn();
-    _onboardingComplete = await _appCache.didCompleteOnboarding();
+    Timer(
+      const Duration(milliseconds: 2000),
+          () {
+        // 8
+        _initialized = true;
+        // 9
+        notifyListeners();
+      },
+    );
   }
   void login(String username, String password) async {
     _loggedIn = true;

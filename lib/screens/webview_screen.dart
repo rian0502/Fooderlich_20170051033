@@ -32,7 +32,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
         title: const Text('WebView'),
       ),
       body: const WebView(
-        initialUrl: 'https://flutter.dev',
+        initialUrl: 'https://github.com/rian0502',
       ),
     );
   }
