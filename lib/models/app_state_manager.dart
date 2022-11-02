@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'app_cache.dart';
 
 class FooderlichTab{
-  static const int recipes = 0;
-  static const int explore = 1;
-  static const int profile = 2;
+  static const int explore = 0;
+  static const int recipes = 1;
+  static const int toBuy = 2;
 }
 
 class AppStateManager extends ChangeNotifier{

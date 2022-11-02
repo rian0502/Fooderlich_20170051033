@@ -6,7 +6,7 @@ import '../models/models.dart';
 
 class ProfileScreen extends StatefulWidget {
   final User? user;
-
+  final int? currentTab;
 
   static MaterialPage page(User user) {
     return MaterialPage(
@@ -15,7 +15,7 @@ class ProfileScreen extends StatefulWidget {
       child: ProfileScreen(user: user),
     );
   }
-  const ProfileScreen({Key? key, this.user}) : super(key: key);
+  const ProfileScreen({Key? key, this.user, this.currentTab}) : super(key: key);
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();

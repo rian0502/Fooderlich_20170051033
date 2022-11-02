@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import '../components/grocery_tile.dart';
+import '../models/app_state_manager.dart';
 import '../models/grocery_manager.dart';
+import 'package:go_router/go_router.dart';
 
 class GroceryListScreen extends StatelessWidget {
-  final GroceryManager? manager;
+  final GroceryManager manager;
 
   const GroceryListScreen({
     Key? key,
-    this.manager,
-  }) : super(key: key);
+    required this.manager,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final groceryItems = manager!.groceryItems;
+    final groceryItems = manager.groceryItems;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: ListView.separated(
@@ -20,7 +22,7 @@ class GroceryListScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           final item = groceryItems[index];
           return Dismissible(
-            key: Key(item!.id!),
+            key: Key(item.id!),
             direction: DismissDirection.endToStart,
             background: Container(
               color: Colors.red,
@@ -32,7 +34,7 @@ class GroceryListScreen extends StatelessWidget {
               ),
             ),
             onDismissed: (direction) {
-              manager!.deleteItem(index);
+              manager.deleteItem(index);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text('${item.name} dismissed'),
@@ -41,14 +43,24 @@ class GroceryListScreen extends StatelessWidget {
             },
             child: InkWell(
               child: GroceryTile(
-                key: Key(item!.id!),
+                key: Key(item.id!),
                 item: item,
                 onComplete: (change) {
-                  manager!.completeItem(index, change!);
+                  if (change != null) {
+                    manager.completeItem(index, change);
+                  }
                 },
               ),
               onTap: () {
-                manager!.groceryItemTapped(index);
+                final itemId = manager.getItemId(index);
+                context.goNamed(
+                  'item',
+                  params: {
+                    'tab': '${FooderlichTab.toBuy}',
+                    'id': itemId,
+                  },
+                );
+                // context.go('/${FooderlichTab.toBuy}/item/$itemId');
               },
             ),
           );
