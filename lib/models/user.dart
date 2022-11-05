@@ -14,6 +14,4 @@ class User {
     required this.points,
     required this.darkMode,
   });
-  get name => '$firstName $lastName';
-  get email => '$firstName@mail.com';
 }

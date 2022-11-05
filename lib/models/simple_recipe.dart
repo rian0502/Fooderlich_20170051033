@@ -1,5 +1,4 @@
-
-class SimpleRecipe{
+class SimpleRecipe {
   String? dishImage;
   String? title;
   String? duration;
@@ -7,7 +6,7 @@ class SimpleRecipe{
   List<String>? information;
 
   SimpleRecipe(
-  this.dishImage, this.title, this.duration, this.source, this.information);
+      this.dishImage, this.title, this.duration, this.source, this.information);
 
   SimpleRecipe.fromJson(Map<String, dynamic> json) {
     dishImage = json['dishImage'];

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'grocery_item.dart';
 
 class GroceryManager extends ChangeNotifier {
@@ -12,7 +13,7 @@ class GroceryManager extends ChangeNotifier {
 
   String getItemId(int index) {
     final groceryItem = _groceryItems[index];
-    return groceryItem.id!;
+    return groceryItem.id;
   }
 
   GroceryItem? getGroceryItem(String id) {

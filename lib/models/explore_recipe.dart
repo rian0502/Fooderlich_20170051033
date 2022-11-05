@@ -1,10 +1,10 @@
-part 'ingridient.dart';
+part 'ingredient.dart';
 part 'instruction.dart';
 
 class RecipeCardType {
-  static const String card1 = 'card1';
-  static const String card2 = 'card2';
-  static const String card3 = 'card3';
+  static const card1 = 'card1';
+  static const card2 = 'card2';
+  static const card3 = 'card3';
 }
 
 class ExploreRecipe {
@@ -28,22 +28,22 @@ class ExploreRecipe {
 
   ExploreRecipe(
       {this.cardType,
-      this.title,
-      this.subtitle,
-      this.backgroundImage,
-      this.backgroundImageSource,
-      this.message,
-      this.authorName,
-      this.role,
-      this.profileImage,
-      this.durationInMinutes,
-      this.dietType,
-      this.calories,
-      this.tags,
-      this.description,
-      this.source,
-      this.ingredients,
-      this.instructions});
+        this.title,
+        this.subtitle,
+        this.backgroundImage,
+        this.backgroundImageSource,
+        this.message,
+        this.authorName,
+        this.role,
+        this.profileImage,
+        this.durationInMinutes,
+        this.dietType,
+        this.calories,
+        this.tags,
+        this.description,
+        this.source,
+        this.ingredients,
+        this.instructions});
 
   ExploreRecipe.fromJson(Map<String, dynamic> json) {
     cardType = json['cardType'];

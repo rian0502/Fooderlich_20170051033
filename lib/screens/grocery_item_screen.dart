@@ -133,6 +133,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
             const SizedBox(height: 16),
             GroceryTile(
               item: GroceryItem(
+                id: 'previewMode',
                 name: _name,
                 importance: _importance,
                 color: _currentColor,

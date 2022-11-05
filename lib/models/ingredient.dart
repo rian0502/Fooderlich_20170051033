@@ -11,5 +11,4 @@ class Ingredients {
     title = json['title'];
     source = json['source'];
   }
-
 }
