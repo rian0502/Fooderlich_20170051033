@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:aplikasi_3/api/recipe_service.dart';
 import 'package:flutter/services.dart';
 import 'package:aplikasi_3/models/models.dart';
 
@@ -7,7 +8,7 @@ class MockFooderlichService{
   Future<ExploreData> getExploreData() async {
     final todayRecipes = await _getTodayRecipes();
     final friendPosts = await _getFriendFeed();
-    final simpleRecipes = await getRecipes();
+    final simpleRecipes = await RecipeService.getRecipesDio();
     return ExploreData(todayRecipes, friendPosts, simpleRecipes);
   }
 

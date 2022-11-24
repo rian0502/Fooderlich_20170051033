@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:aplikasi_3/api/recipe_service.dart';
 import 'package:aplikasi_3/models/explore_data.dart';
 import 'package:flutter/material.dart';
 import '../api/mock_fooderlich_service.dart';
@@ -7,7 +10,6 @@ import '../components/recipe_grid_view.dart';
 
 class RecipesScreen extends StatelessWidget {
   final exploreService = MockFooderlichService();
-
   RecipesScreen({Key? key}) : super(key: key);
 
   @override
