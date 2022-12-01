@@ -39,15 +39,32 @@ class DatabaseHelper{
 
   FutureOr<void> _onCreate(Database db, int version) async {
     var sql = 'CREATE TABLE $tablename($id TEXT PRIMARY KEY,'
-        '$dishImage TEXT, $title TEXT, $duration TEXT, $source TEXT'
+        '$dishImage TEXT, $title TEXT, $duration TEXT, $source TEXT,'
         '$information TEXT)';
     await db.execute(sql);
   }
 
-  // Future<int> addResep(SimpleRecipe recipe) async{
-  //   final dbClient = await database;
-  //
-  // }
+  Future<int> addResep(SimpleRecipe recipe) async{
+    final dbClient = await database;
+    final res = await dbClient!.insert(tablename, recipe.toMap());
+    print("id : $res berhasil ditambahkan");
+    return res;
+  }
 
+  Future<int> deleteResep(String id) async{
+    final dbClient = await database;
+    final res = await dbClient!.delete(
+        tablename,
+        where: 'id = ?',
+        whereArgs: [id]);
+    print("id : $res berhasil ditambahkan");
+    return res;
+  }
 
+  Future<List> getAllid() async{
+    final dbClient = await database;
+    final res = await dbClient!.query(tablename, columns: [id]);
+    List<String> list = res.isNotEmpty ? res.map((c) => c['id'].toString()).toList() : [];
+    return list;
+  }
 }

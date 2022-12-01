@@ -1,5 +1,6 @@
 import 'package:aplikasi_3/models/models.dart';
 import 'package:flutter/material.dart';
+
 import '../sqlite/database_helper.dart';
 
 class RecipeThumbnail extends StatefulWidget {
@@ -11,7 +12,18 @@ class RecipeThumbnail extends StatefulWidget {
 }
 
 class _RecipeThumbnailState extends State<RecipeThumbnail> {
-  bool isFavorit =false;
+  bool isFavorit = false;
+  @override
+  void initState() {
+    DatabaseHelper.db.getAllid().then((value) {
+      if(value.contains(widget.recipe.id)){
+        setState(() {
+          isFavorit = true;
+        });
+      }
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,19 +32,23 @@ class _RecipeThumbnailState extends State<RecipeThumbnail> {
           Expanded(
               child: Stack(children: [
             ClipRRect(
+                borderRadius: BorderRadius.circular(12),
                 child: Image.network('${widget.recipe.dishImage}',
-                    fit: BoxFit.cover),
-                borderRadius: BorderRadius.circular(12)),
+                    fit: BoxFit.cover)),
             Positioned(
               right: 0,
               child: CircleAvatar(
                 backgroundColor: Colors.white,
                 child: IconButton(
                     onPressed: (){
-                      print("favorit");
-                     setState(() {
+                      setState(() {
                         isFavorit = !isFavorit;
-                     });
+                        if(isFavorit){
+                          DatabaseHelper.db.addResep(widget.recipe);
+                        }else{
+                          DatabaseHelper.db.deleteResep(widget.recipe.id.toString());
+                        }
+                      });
                     },
                     icon: Icon(Icons.favorite, color: (isFavorit) ? Colors.red : Colors.grey,)),
               ),
@@ -43,6 +59,7 @@ class _RecipeThumbnailState extends State<RecipeThumbnail> {
               maxLines: 1, style: Theme.of(context).textTheme.bodyText1),
           Text(widget.recipe.duration.toString(),
               style: Theme.of(context).textTheme.bodyText1),
+
         ]));
   }
 }
