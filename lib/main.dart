@@ -1,10 +1,8 @@
 import 'package:aplikasi_3/fooderlich_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'api/recipe_service.dart';
 import 'models/models.dart';
 import 'navigation/app_router.dart';
-
 
 
 void main() async {

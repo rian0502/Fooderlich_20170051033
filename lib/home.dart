@@ -2,6 +2,7 @@ import 'package:aplikasi_3/api/recipe_service.dart';
 import 'package:aplikasi_3/screens/explore_screen.dart';
 import 'package:aplikasi_3/screens/grocery_screen.dart';
 import 'package:aplikasi_3/screens/recipes_screen.dart';
+import 'package:aplikasi_3/sqlite/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -32,6 +33,8 @@ class HomeState extends State<Home> {
   void initState() {
     super.initState();
     getCurrentIndex();
+    //create db
+    DatabaseHelper.db.database;
   }
 
   void getCurrentIndex() async {
