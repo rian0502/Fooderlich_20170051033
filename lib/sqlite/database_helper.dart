@@ -57,7 +57,6 @@ class DatabaseHelper{
         tablename,
         where: 'id = ?',
         whereArgs: [id]);
-    print("id : $res berhasil ditambahkan");
     return res;
   }
 
