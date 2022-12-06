@@ -29,37 +29,40 @@ class _RecipeThumbnailState extends State<RecipeThumbnail> {
     return Container(
         padding: const EdgeInsets.all(8),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Expanded(
-              child: Stack(children: [
-            ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.network('${widget.recipe.dishImage}',
-                    fit: BoxFit.cover)),
-            Positioned(
-              right: 0,
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: IconButton(
-                    onPressed: (){
-                      setState(() {
-                        isFavorit = !isFavorit;
-                        if(isFavorit){
-                          DatabaseHelper.db.addResep(widget.recipe);
-                        }else{
-                          DatabaseHelper.db.deleteResep(widget.recipe.id.toString());
-                        }
-                      });
-                    },
-                    icon: Icon(Icons.favorite, color: (isFavorit) ? Colors.red : Colors.grey,)),
-              ),
-            )
-          ])),
-          const SizedBox(height: 3),
+          Stack(
+              children: [
+                ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.network('${widget.recipe.dishImage}',
+                        fit: BoxFit.cover)
+                ),
+                Positioned(
+                  right: 0,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: IconButton(
+                        onPressed: (){
+                          setState(() {
+                            isFavorit = !isFavorit;
+                            if(isFavorit){
+                              DatabaseHelper.db.addResep(widget.recipe);
+                            }else{
+                              DatabaseHelper.db.deleteResep(widget.recipe.id.toString());
+                            }
+                          });
+                        },
+                        icon: Icon(Icons.favorite, color: (isFavorit) ? Colors.red : Colors.grey,)),
+                  ),
+                )
+              ]
+          ),
+          const SizedBox(height: 4),
           Text(widget.recipe.title.toString(),
               maxLines: 1, style: Theme.of(context).textTheme.bodyText1),
           Text(widget.recipe.duration.toString(),
               style: Theme.of(context).textTheme.bodyText1),
-
-        ]));
+        ]
+        )
+    );
   }
 }

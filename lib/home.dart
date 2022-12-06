@@ -57,6 +57,7 @@ class HomeState extends State<Home> {
           style: Theme.of(context).textTheme.headline6,
         ),
         actions: [
+          favoritButton(widget.currentTab),
           profileButton(widget.currentTab),
         ],
       ),
@@ -98,6 +99,7 @@ class HomeState extends State<Home> {
             icon: Icon(Icons.list),
             label: 'To Buy',
           ),
+
         ],
       ),
     );
@@ -108,6 +110,16 @@ class HomeState extends State<Home> {
     prefs.setInt(prefSelectedIndexKey, _selectedIndex);
   }
 
+  Widget favoritButton(int currentTab) {
+      return IconButton(
+        icon: const Icon(Icons.favorite, color: Colors.red,),
+        onPressed: () {
+          context.goNamed('favorite', params: {
+            'tab': '$currentTab',
+          });
+        },
+      );
+  }
   Widget profileButton(int currentTab) {
     return Padding(
       padding: const EdgeInsets.only(right: 16.0),

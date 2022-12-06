@@ -1,3 +1,4 @@
+import 'package:aplikasi_3/screens/favorite_screen.dart';
 import 'package:flutter/material.dart';
 import '../home.dart';
 import '../models/models.dart';
@@ -67,7 +68,18 @@ class AppRouter {
                   path: 'rw',
                   builder: (context, state) => const WebViewScreen(),
                 ),
-              ]),
+              ]
+          ),
+          //router to favorite
+          GoRoute(
+            name: 'favorite',
+            path: 'favorite',
+            builder: (context, state) {
+              final tab = int.tryParse(state.params['tab'] ?? '') ?? 0;
+              return FavoriteScreen(
+                  currentTab: tab);
+            },
+          ),
         ],
       ),
     ],

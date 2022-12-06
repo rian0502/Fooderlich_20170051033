@@ -66,4 +66,17 @@ class DatabaseHelper{
     List<String> list = res.isNotEmpty ? res.map((c) => c['id'].toString()).toList() : [];
     return list;
   }
+  //get data
+  Future<List<SimpleRecipe>> getAllResep() async{
+    final dbClient = await database;
+    final res = await dbClient!.query(tablename, columns: [id, dishImage, title, duration, source]);
+    final list = res.toList();
+    List<SimpleRecipe> recipes = [];
+    for(var i = 0; i < list.length; i++){
+      recipes.add(SimpleRecipe.fromMap(list[i]));
+    }
+
+    return recipes;
+  }
+
 }

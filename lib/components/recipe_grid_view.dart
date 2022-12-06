@@ -9,7 +9,7 @@ class RecipeGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+    return Padding(padding: const EdgeInsets.only(left: 15, right: 15, top: 16),
     child: GridView.builder(
     itemCount: recipes.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

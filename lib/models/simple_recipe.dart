@@ -30,12 +30,14 @@ class SimpleRecipe {
     return map;
   }
 
-  SimpleRecipe.fromMap(Map<String, dynamic> map) {
-    this.id = map['id'];
-    this.dishImage = map['dishImage'];
-    this.title = map['title'];
-    this.duration = map['duration'];
-    this.source = map['source'];
-    this.information = map['information'];
+ factory SimpleRecipe.fromMap(Map<String, dynamic> map) {
+    return SimpleRecipe(
+      map['id'],
+      map['dishImage'],
+      map['title'],
+      map['duration'],
+      map['source'],
+      map['information'],
+    );
   }
 }
